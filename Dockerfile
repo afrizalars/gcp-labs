@@ -2,19 +2,16 @@
 FROM node:12-slim
 
 # Create and change to the app directory.
-WORKDIR /app
+WORKDIR /index
 
 COPY package.json .
-COPY yarn.lock .
+# COPY yarn.lock .
 
 # Install production dependencies.
-RUN yarn install --production
+# RUN yarn install --production
 
 # Copy local codebase into the container image
 COPY . .
-
-# Compile down to ES5 with Babel
-RUN yarn build-server
 
 # Remove unused src directory
 RUN rm -rf src/
