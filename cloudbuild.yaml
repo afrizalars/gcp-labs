@@ -1,0 +1,11 @@
+steps:
+  - name: node
+    entrypoint: npm
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--network=cloudbuild',  '-t', 'gcr.io/gcp-lab-dev:${_ENV}','-t', 'gcr.io/gcp-lab-dev:${_VERSION}', '.']
+    # push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/gcp-lab-dev']
+    # Deploy container image to Cloud Run Fully Managed
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'gcp-lab-dev', '--image', 'gcr.io/gcp-lab-dev', '--region', 'asia-southeast2', '--platform', 'managed','--allow-unauthenticated']
