@@ -1,7 +1,7 @@
 steps:
   - name: node
     entrypoint: npm
-    args: ["run", "create-env"]
+    args: ["install"]
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '--network=cloudbuild',  '-t', 'gcr.io/gcp-lab-staging:${_ENV}','-t', 'gcr.io/gcp-lab-staging:${_VERSION}', '.']
     # push the container image to Container Registry
