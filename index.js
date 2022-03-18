@@ -3,7 +3,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   const name = process.env.NAME || 'World';
-  res.send(`Helloss from branchs features zz ${name}!`);
+  res.send(`Helloss from brasnchs features zz ${name}!`);
 });
 
 const port = parseInt(process.env.PORT) || 8080;
