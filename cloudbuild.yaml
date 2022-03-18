@@ -3,10 +3,10 @@ steps:
     entrypoint: npm
     args: ["install"]
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '--network=cloudbuild',  '-t', 'gcr.io/gcp-lab:${_ENV}','-t', 'gcr.io/gcp-lab:${_VERSION}', '.']
+    args: ['build', '--network=cloudbuild',  '-t', 'gcr.io/afrizalars/gcp-labs:${_ENV}','-t', 'gcr.io/afrizalars/gcp-labs:${_VERSION}', '.']
     # push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/gcp-lab:${_ENV}']
+    args: ['push', 'gcr.io/afrizalars/gcp-labs']
     # Deploy container image to Cloud Run Fully Managed
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'gcp-lab', '--image', 'gcr.io/gcp-lab', '--region', 'asia-southeast2', '--platform', 'managed']
+    args: ['run', 'deploy', 'gcp-labs', '--image', 'gcr.io/afrizalars/gcp-labs', '--region', 'asia-southeast2', '--platform', 'managed']
